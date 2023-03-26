@@ -1,7 +1,15 @@
 from peewee import *
+import json
 
-database = PostgresqlDatabase('ia_interactive', user='postgres', password='root',
-                              host='localhost', port='5432', autorollback=True)
+ENVIROMENT = 'DEFAULT'
+
+with open('app/config.json', 'r') as file:
+    config = json.load(file)
+    print (config)
+
+database = PostgresqlDatabase(config[ENVIROMENT]['DB_NAME'], user=config[ENVIROMENT]['DB_USER'], 
+                              password=config[ENVIROMENT]['DB_PASSWORD'], host=config[ENVIROMENT]['DB_HOST'], 
+                              port=config[ENVIROMENT]['DB_PORT'], autorollback=True)
 
 class BaseModel(Model):
     class Meta:

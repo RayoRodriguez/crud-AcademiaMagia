@@ -1,4 +1,4 @@
-from app.models.db import database, fn, Applications as ApplicationsDB, Grimoires as GrimoiresDB
+from app.models.db import fn, Applications as ApplicationsDB, Grimoires as GrimoiresDB
 from datetime import date
 from fastapi.responses import JSONResponse
 import uuid
