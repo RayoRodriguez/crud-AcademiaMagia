@@ -36,6 +36,7 @@ async def update_status(dni, request: UpdateStatusRequestModel):
     return object_AdmissionRequest.update_status(dni, request.update_by, request.status)
 
 #DELETE
-@router.delete(path='/delete/{id}')
-async def delete_request(id):
-    return ('res')
+@router.delete(path='/delete/{dni}')
+async def delete_request(dni):
+    object_AdmissionRequest = AdmissionRequest()
+    return object_AdmissionRequest.delete_request(dni)

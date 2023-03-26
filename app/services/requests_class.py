@@ -5,8 +5,9 @@ import uuid
 
 
 class AdmissionRequest:
+
     comment = 'Registro Creado'
-    #TODO Ver que el comments no sea requerido
+
     def __init__ (self, name = 'Default', last_name = 'Default', dni = 'Default123', 
                   years_old = '1', magic_affinities = '1' ):
         self.__name = name
@@ -65,11 +66,18 @@ class AdmissionRequest:
         try:
             res = ApplicationsDB.update(updateData).where((ApplicationsDB.dni == dni) & (ApplicationsDB.is_approved == False)).execute()
             if res == 0:
-                return JSONResponse(status_code = 200, content = "No se actualizo ningun registro")
-            return JSONResponse(status_code = 200, content = "Se actualizo correctamente")
+                return JSONResponse(status_code = 201, content = "No se actualizó ningun registro")
+            return JSONResponse(status_code = 200, content = "Se actualizó correctamente")
         except Exception as exep:
             return JSONResponse(status_code = 404, content = str(exep))
 
-    def delete_request(self):
+    def delete_request(self, dni):
+        try:
+            res = ApplicationsDB.delete().where(ApplicationsDB.dni == dni).execute()
+            if res == 0:
+                return JSONResponse(status_code = 201, content = "No se encontro ningun registro con ese DNI")
+            return JSONResponse(status_code = 200, content = "Se eliminó correctamente")
+        except Exception as exep:
+            return JSONResponse(status_code = 404, content = str(exep))
         pass
 
