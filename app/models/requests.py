@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 class AdmissionRequestModel(BaseModel):
@@ -6,6 +7,7 @@ class AdmissionRequestModel(BaseModel):
     dni: str
     age: int
     magic_affinities_id: int
+    comments: Optional[str]
 
 
 class UpdateAdmissionRequestModel(AdmissionRequestModel):

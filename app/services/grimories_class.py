@@ -12,6 +12,6 @@ class Grimoire:
             query = GrimoiresDB.select().dicts()
             for row in query:
                 res.append(row)
-            return JSONResponse(status_code = 200 ,content = res)
+            return JSONResponse(status_code = 200, content = res)
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = exep)
+            return JSONResponse(status_code = 404, content = str(exep))

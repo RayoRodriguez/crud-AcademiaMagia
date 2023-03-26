@@ -9,13 +9,19 @@ router = APIRouter()
 #GET
 @router.get(path='/')
 async def all_applications():
-    return ('res')
+    object_AdmissionRequest = AdmissionRequest()
+    return object_AdmissionRequest.all_requests()
+
+@router.get(path='/dni/{id}')
+async def dni_application(id):
+    object_AdmissionRequest = AdmissionRequest()
+    return object_AdmissionRequest.all_requests(id)
 
 #POST
 @router.post(path='/create')
-def create_applications(request: AdmissionRequestModel):
+async def create_applications(request: AdmissionRequestModel):
     object_AdmissionRequest = AdmissionRequest(request.name, request.last_name, request.dni, 
-                                                  request.age, request.magic_affinities_id)
+                                                  request.age, request.magic_affinities_id, request.comments)
     return object_AdmissionRequest.create_request()
 
 #PUT
