@@ -29,7 +29,7 @@ class AdmissionRequest:
                     res.append(row)
                 return JSONResponse(status_code = 200, content = res)
             except Exception as exep:
-                return JSONResponse(status_code = 404, content = str(exep))
+                return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
         else:
             try:
                 query = ApplicationsDB.select().where(ApplicationsDB.dni == dni).dicts()
@@ -39,7 +39,7 @@ class AdmissionRequest:
                     res.append(row)
                 return JSONResponse(status_code = 200, content = res)
             except Exception as exep:
-                return JSONResponse(status_code = 404, content = str(exep))
+                return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
 
     def create_request(self):
         insert_data = {'id': str(uuid.uuid4()), 'name' : self.__name, 'last_name' : self.__last_name, 
@@ -49,9 +49,9 @@ class AdmissionRequest:
                 }
         try:
             ApplicationsDB.insert(insert_data).execute()
-            return JSONResponse(status_code = 200, content = 'ok')
+            return JSONResponse(status_code = 200, content = {'detail': [{'msg': 'Solicitud creada con exito'}]})
         except Exception as exep:
-            return JSONResponse(status_code = 400, content = str(exep))
+            return JSONResponse(status_code = 400, content = {'detail': [{'msg': str(exep)}]})
 
     def update_request(self, id):
         self.comment = 'Actualizado'
@@ -64,10 +64,10 @@ class AdmissionRequest:
         try:
             res = ApplicationsDB.update(update_Data).where(ApplicationsDB.id == id).execute()
             if res == 0:
-                return JSONResponse(status_code = 201, content = "No se actualizó ningun registro")
-            return JSONResponse(status_code = 200, content = "Se actualizó correctamente")
+                return JSONResponse(status_code = 201, content = {'detail': [{'msg': 'No se actualizó ningun registro'}]})
+            return JSONResponse(status_code = 200, content = {'detail': [{'msg': 'Se actualizó correctamente'}]})
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
         pass
 
     def update_status(self, dni, status):
@@ -80,17 +80,17 @@ class AdmissionRequest:
         try:
             res = ApplicationsDB.update(update_Data).where((ApplicationsDB.dni == dni) & (ApplicationsDB.is_approved == False)).execute()
             if res == 0:
-                return JSONResponse(status_code = 201, content = "No se actualizó ningun registro")
-            return JSONResponse(status_code = 200, content = "Se actualizó correctamente")
+                return JSONResponse(status_code = 201, content = {'detail': [{'msg': 'No se actualizó ningun registro'}]})
+            return JSONResponse(status_code = 200, content = {'detail': [{'msg': 'Se actualizó correctamente'}]})
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
 
     def delete_request(self, dni):
         try:
             res = ApplicationsDB.delete().where(ApplicationsDB.dni == dni).execute()
             if res == 0:
-                return JSONResponse(status_code = 201, content = "No se encontro ningun registro con ese DNI")
-            return JSONResponse(status_code = 200, content = "Se eliminó correctamente")
+                return JSONResponse(status_code = 201, content = {'detail': [{'msg': 'No se encontro ningun registro con ese DNI'}]})
+            return JSONResponse(status_code = 200, content = {'detail': [{'msg': 'Se eliminó correctamente'}]})
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
 

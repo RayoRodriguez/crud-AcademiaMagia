@@ -14,7 +14,7 @@ class Grimoire:
                 res.append(row)
             return JSONResponse(status_code = 200, content = res)
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
         
     def assignment_grimories(self):
         res = {}
@@ -31,4 +31,4 @@ class Grimoire:
                     res[row['grimoire_name']] = data
             return JSONResponse(status_code = 200, content = res)
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})

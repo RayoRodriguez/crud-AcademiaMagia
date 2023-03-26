@@ -14,6 +14,5 @@ class Affinities:
                 res.append(row)
             return JSONResponse(status_code = 200, content = res)
         except Exception as exep:
-            return JSONResponse(status_code = 404, content = str(exep))
-        
+            return JSONResponse(status_code = 404, content = {'detail': [{'msg': str(exep)}]})
         
