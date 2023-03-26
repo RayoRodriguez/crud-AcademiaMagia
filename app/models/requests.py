@@ -7,14 +7,8 @@ class AdmissionRequestModel(BaseModel):
     dni: str
     age: int
     magic_affinities_id: int
-
-class UpdateAdmissionRequestModel(AdmissionRequestModel):
-    comments: str = ''
-    update_by: str
-
 class UpdateStatusRequestModel(BaseModel):
     comments: str = ''
-    update_by: str
     status: bool
 
 
