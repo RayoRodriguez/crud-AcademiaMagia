@@ -10,14 +10,3 @@ class AdmissionRequestModel(BaseModel):
 class UpdateStatusRequestModel(BaseModel):
     comments: str = ''
     status: bool
-
-
-
-
-
-    #grimoires_id = ForeignKeyField(column_name='grimoires-id', field='id', model=Grimoires, null=True)
-    #is_approved = BooleanField(constraints=[SQL("DEFAULT false")])
-    #comments = CharField(null=True)
-
-    #updated_by = CharField(null=True)
-    #updated_at = DateField(null=True)

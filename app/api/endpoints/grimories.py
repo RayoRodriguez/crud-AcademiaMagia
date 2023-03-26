@@ -10,6 +10,11 @@ async def all_grimories():
     object_Grimorie = Grimoire()
     return object_Grimorie.all_grimoires()
 
+@router.get(path='/assignment')
+async def assignment_grimories():
+    object_Grimorie = Grimoire()
+    return object_Grimorie.assignment_grimories()
+
 #POST
 
 

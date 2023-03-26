@@ -21,7 +21,6 @@ async def dni_application(dni):
 async def create_applications(request: AdmissionRequestModel):
     object_AdmissionRequest = AdmissionRequest(request.name, request.last_name, request.dni, 
                                                   request.age, request.magic_affinities_id)
-    object_AdmissionRequest.comment = request.comments
     return object_AdmissionRequest.create_request()
 
 #PUT
