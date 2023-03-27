@@ -1,24 +1,18 @@
 from fastapi import APIRouter
-from app.services.grimories_class import Grimoire
 
+from app.services.grimories_class import Grimoire
 
 router = APIRouter()
 
-#GET
+
+# GET
 @router.get(path='/')
-async def all_grimories():
-    object_Grimorie = Grimoire()
-    return object_Grimorie.all_grimoires()
+async def all_grimoires():
+    object_grimoire = Grimoire()
+    return object_grimoire.all_grimoires()
+
 
 @router.get(path='/assignment')
-async def assignment_grimories():
-    object_Grimorie = Grimoire()
-    return object_Grimorie.assignment_grimories()
-
-#POST
-
-
-#PUT
-
-
-#DELETE
+async def assignment_grimoires():
+    object_grimoire = Grimoire()
+    return object_grimoire.assignment_grimories()

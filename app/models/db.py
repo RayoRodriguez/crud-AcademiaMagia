@@ -1,19 +1,26 @@
-from peewee import *
 import json
+
+from peewee import *
 
 ENVIROMENT = 'DEFAULT'
 
 with open('app/config.json', 'r') as file:
     config = json.load(file)
-    print (config)
+    print(config)
 
-database = PostgresqlDatabase(config[ENVIROMENT]['DB_NAME'], user=config[ENVIROMENT]['DB_USER'], 
-                              password=config[ENVIROMENT]['DB_PASSWORD'], host=config[ENVIROMENT]['DB_HOST'], 
-                              port=config[ENVIROMENT]['DB_PORT'], autorollback=True)
+database = PostgresqlDatabase(
+    config[ENVIROMENT]['DB_NAME'],
+    user=config[ENVIROMENT]['DB_USER'],
+    password=config[ENVIROMENT]['DB_PASSWORD'],
+    host=config[ENVIROMENT]['DB_HOST'],
+    port=config[ENVIROMENT]['DB_PORT'],
+    autorollback=True)
+
 
 class BaseModel(Model):
     class Meta:
         database = database
+
 
 class Grimoires(BaseModel):
     grimoire_name = CharField()
@@ -23,12 +30,14 @@ class Grimoires(BaseModel):
         table_name = 'grimoires'
         schema = 'magic_academy'
 
+
 class MagicAffinities(BaseModel):
     name = CharField()
 
     class Meta:
         table_name = 'magic_affinities'
         schema = 'magic_academy'
+
 
 class Applications(BaseModel):
     id = CharField(primary_key=True)
