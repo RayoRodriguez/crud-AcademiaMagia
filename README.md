@@ -7,11 +7,14 @@ Aplicacion CRUD creada con FastAPI y PostgreSQL para el registro de solicitudes 
     <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads" style="padding:5px">
     <img src="https://img.shields.io/badge/PostgreSQL-v14.4-blue" />
     </a>
+    <a href="https://code.visualstudio.com/" style="padding:5px">
+    <img src="https://img.shields.io/badge/VSCode-v1.16-blue" />
+    </a>
 </div>
 
 ---
 
-## Instalación
+## Instalación (con IDE VSCode)
 
 1. **Crear ambiente virtual** dentro de la carpeta raiz de tu repositorio
 ```bash
