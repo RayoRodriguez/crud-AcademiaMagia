@@ -54,7 +54,7 @@ class AdmissionRequest:
         except Exception as exp:
             return JSONResponse(status_code=400, content={'detail': [{'msg': str(exp)}]})
 
-    def update_request(self, id):
+    def update_request(self, dni):
         self.comment = 'Actualizado'
         update_data = {ApplicationsDB.name: self.__name, ApplicationsDB.last_name: self.__last_name,
                        ApplicationsDB.dni: self.__dni, ApplicationsDB.years: self.__year_old,
@@ -63,7 +63,7 @@ class AdmissionRequest:
                        ApplicationsDB.updated_at: self.__today,
                        }
         try:
-            res = ApplicationsDB.update(update_data).where(ApplicationsDB.id == id).execute()
+            res = ApplicationsDB.update(update_data).where(ApplicationsDB.dni == dni).execute()
             if res == 0:
                 return JSONResponse(status_code=201, content={'detail': [{'msg': 'No se actualizó ningun registro'}]})
             return JSONResponse(status_code=200, content={'detail': [{'msg': 'Se actualizó correctamente'}]})
@@ -80,7 +80,7 @@ class AdmissionRequest:
                        ApplicationsDB.grimoires_id: id_grimoire}
         try:
             res = ApplicationsDB.update(update_data).where(
-                (ApplicationsDB.dni == dni) & (ApplicationsDB.is_approved is False)).execute()
+                (ApplicationsDB.dni == dni) & (ApplicationsDB.is_approved == False)).execute()
             if res == 0:
                 return JSONResponse(status_code=201, content={'detail': [{'msg': 'No se actualizó ningun registro'}]})
             return JSONResponse(status_code=200, content={'detail': [{'msg': 'Se actualizó correctamente'}]})

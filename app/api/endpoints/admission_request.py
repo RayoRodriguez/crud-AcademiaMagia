@@ -28,11 +28,11 @@ async def create_applications(request: AdmissionRequestModel):
 
 
 # PUT
-@router.put(path='/update/{id}')
-async def update_request(id, request: AdmissionRequestModel):
+@router.put(path='/update/{dni}')
+async def update_request(dni, request: AdmissionRequestModel):
     object_admission_request = AdmissionRequest(request.name, request.last_name, request.dni,
                                                 request.age, request.magic_affinities_id)
-    return object_admission_request.update_request(id)
+    return object_admission_request.update_request(dni)
 
 
 @router.put(path='/approved/{dni}')

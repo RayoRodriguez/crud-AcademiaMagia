@@ -7,7 +7,7 @@ class Grimoire:
     def __init__(self):
         pass
 
-    def all_grimoire(self):
+    def all_grimoires(self):
         res = []
         try:
             query = GrimoireDB.select().dicts()
